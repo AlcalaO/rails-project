@@ -91,6 +91,11 @@
   
   
   
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="ArticlesHelper.html" title="ArticlesHelper (module)">ArticlesHelper</a></span></dd>
+  </dl>
+  
   
 
   
@@ -117,6 +122,50 @@
     </h2>
 
     <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-instance_method" title="#create (instance method)">#<strong>create</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#destroy-instance_method" title="#destroy (instance method)">#<strong>destroy</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -195,13 +244,92 @@
   
   
   
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="ArticlesHelper.html" title="ArticlesHelper (module)">ArticlesHelper</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ArticlesHelper.html#article_params-instance_method" title="ArticlesHelper#article_params (method)">#article_params</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="index-instance_method">
+  <h3 class="signature first" id="create-instance_method">
+  
+    #<strong>create</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/articles_controller.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
+  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Article.html" title="Article (class)">Article</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_article_params'>article_params</span><span class='rparen'>)</span>
+  <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_article_path'>article_path</span><span class='lparen'>(</span><span class='ivar'>@article</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="destroy-instance_method">
+  
+    #<strong>destroy</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/articles_controller.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Article.html" title="Article (class)">Article</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_articles_path'>articles_path</span><span class='lparen'>(</span><span class='ivar'>@article</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="index-instance_method">
   
     #<strong>index</strong>  &#x21d2; <tt>Object</tt> 
   
@@ -215,12 +343,12 @@
       <pre class="lines">
 
 
-2
 3
-4</pre>
+4
+5</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/articles_controller.rb', line 2</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/articles_controller.rb', line 3</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
     <span class='ivar'>@articles</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Article.html" title="Article (class)">Article</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
@@ -245,15 +373,15 @@
       <pre class="lines">
 
 
-10
 11
-12</pre>
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/articles_controller.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/articles_controller.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
-    
+   <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Article.html" title="Article (class)">Article</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> 
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -275,12 +403,12 @@
       <pre class="lines">
 
 
-6
 7
-8</pre>
+8
+9</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/articles_controller.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/articles_controller.rb', line 7</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
    <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Article.html" title="Article (class)">Article</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span> 
@@ -295,7 +423,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Jul 12 20:56:21 2017 by
+  Generated on Thu Jul 13 00:04:56 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.4.0).
 </div>
