@@ -1,43 +1,53 @@
 class ArticlesController < ApplicationController
   include ArticlesHelper
-    def index
-        @articles = Article.all
-    end
 
-    def show
-       @article = Article.find(params[:id])
-       @comment = Comment.new
-       @comment.article_id = @article.id
-    end
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
-    def new
-       @article = Article.new
+  def require_login
+    unless Author.count == 0 || current_user
+      redirect_to root_path
+      return false
     end
+  end
 
-    def create
-      @article = Article.new(article_params)
-      @article.save
-      flash.notice = "Article '#{@article.title}' Created!"
-      redirect_to article_path(@article)
-    end
+  def index
+      @articles = Article.all
+  end
 
-    def destroy
+  def show
       @article = Article.find(params[:id])
-      @article.destroy
-      flash.notice = "Article '#{@article.title}' Destroyed!"
-      redirect_to articles_path(@article)
-    end
+      @comment = Comment.new
+      @comment.article_id = @article.id
+  end
 
-    def edit
-      @article = Article.find(params[:id])
-    end
+  def new
+      @article = Article.new
+  end
 
-    def update
-      @article = Article.find(params[:id])
-      @article.update(article_params)
+  def create
+    @article = Article.new(article_params)
+    @article.save
+    flash.notice = "Article '#{@article.title}' Created!"
+    redirect_to article_path(@article)
+  end
 
-      flash.notice = "Article '#{@article.title}' Updated!"
-      
-      redirect_to article_path(@article)
-    end
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    flash.notice = "Article '#{@article.title}' Destroyed!"
+    redirect_to articles_path(@article)
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    @article.update(article_params)
+
+    flash.notice = "Article '#{@article.title}' Updated!"
+    
+    redirect_to article_path(@article)
+  end
 end
